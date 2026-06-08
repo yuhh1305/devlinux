@@ -23,10 +23,10 @@ void add_product(int fd) {
     printf("Nhập giá: "); scanf("%lf", &p.price);
 
     lseek(fd, 0, SEEK_END);
-    if (write(fd, &p, sizeof(Product)) != sizeof(Product)) {
-        perror("Lỗi ghi sản phẩm");
-    } else {
-        printf("Thêm sản phẩm thành công!\n");
+    ssize_t ret = write(fd, &p, sizeof(Product));
+    if (ret != sizeof(Product)) {
+        if (ret < 0) perror("write error");
+        else fprintf(stderr, "partial write\n");
     }
 }
 
@@ -37,18 +37,23 @@ void show_product_by_index(int fd) {
 
     off_t offset = (off_t)index * sizeof(Product);
 
-    if (lseek(fd, offset, SEEK_SET) == -1) {
+    if (lseek(fd, offset, SEEK_SET) == (off_t)-1) {
         perror("Lỗi dịch chuyển con trỏ");
         return;
     }
 
     Product p;
-    if (read(fd, &p, sizeof(Product)) == sizeof(Product)) {
-        printf("\nSản phẩm tại Index %d:\n", index);
-        printf("ID: %d | Tên: %s | Số lượng: %d | Giá: %.2f\n", p.id, p.name, p.quantity, p.price);
-    } else {
+
+    ssize_t nread = read(fd, &p, sizeof(Product));
+    if (nread < 0) {
+        perror("read error");
+    } else if (nread != sizeof(Product)) {
         printf("Không tìm thấy sản phẩm tại index này.\n");
+    } else { 
+        printf("\nSản phẩm tại Index %d:\n", index);
+        printf("ID: %d | Tên: %s | Số lượng: %d | Giá: %.2f\n", p.id, p.name, p.quantity, p.price); 
     }
+    
 }
 
 void update_quantity_by_index(int fd) {
@@ -59,16 +64,18 @@ void update_quantity_by_index(int fd) {
     off_t offset = (off_t)index * sizeof(Product);
     off_t field_offset = offset + offsetof(Product, quantity);
 
-    if (lseek(fd, field_offset, SEEK_SET) == -1) {
+    if (lseek(fd, field_offset, SEEK_SET) == (off_t)-1) {
         perror("Lỗi dịch chuyển tới vị trí trường dữ liệu");
         return;
     }
 
-    // Chỉ ghi đè đúng dung lượng của biến kiểu int (trường quantity)
-    if (write(fd, &new_qty, sizeof(int)) == sizeof(int)) {
-        printf("Cập nhật số lượng thành công tại index %d!\n", index);
+    ssize_t ret = write(fd, &new_qty, sizeof(int));
+    if (ret < 0) {
+        perror("write error");
+    } else if (ret != sizeof(int)) {
+        fprintf(stderr, "partial write\n");
     } else {
-        printf("Cập nhật thất bại. Kiểm tra lại index.\n");
+        printf("Cập nhật số lượng thành công tại index %d!\n", index);
     }
 }
 
