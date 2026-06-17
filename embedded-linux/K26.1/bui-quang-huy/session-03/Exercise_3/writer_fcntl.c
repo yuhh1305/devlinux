@@ -53,8 +53,6 @@ int main(int argc, char *argv[]) {
 
     write(fd, log_buffer, strlen(log_buffer));
 
-    //sleep(20);
-
     fl.l_type = F_UNLCK;
     if (fcntl(fd, F_SETLK, &fl) < 0) {
         perror("Lỗi giải phóng khóa fcntl");
