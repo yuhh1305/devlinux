@@ -1,0 +1,6 @@
+[2026-05-31 23:36:10] [INFO] Application started.
+[2026-05-31 23:36:10] [INFO] Performed Add: 12.50 + 4.00 = 16.50
+[2026-05-31 23:36:10] [INFO] Performed Sub: 12.50 - 4.00 = 8.50
+[2026-05-31 23:36:10] [INFO] Performed Div: 12.50 / 4.00 = 3.12
+[2026-05-31 23:36:10] [ERROR] Division by zero attempted!
+[2026-05-31 23:36:10] [INFO] Application finished smoothly.
