@@ -1,7 +1,9 @@
 # Assignment — session-XX
+**Deadline: YYYY-MM-DD HH:MM:SS**
 
 > **How to use this template:**
 > - Remove all `>` instruction lines before pushing
+> - Line 2 MUST contain deadline in format: `**Deadline: YYYY-MM-DD HH:MM:SS**` (e.g. `**Deadline: 2026-06-14 23:59:00**`)
 > - Sections marked `(optional)` can be omitted if not needed
 > - The `[build]` / `[review-only]` tag in each Exercise heading is **required**
 
