@@ -337,6 +337,21 @@ session-01/
     └── Makefile
 ```
 
+> ⚠️ **RẤT QUAN TRỌNG:** Chỉ được tạo/sửa file **TRONG Exercise folders**!
+>
+> ❌ **KHÔNG được tạo:**
+> - `session-01/debug.c` (ngoài Exercise)
+> - `session-01/config.h` (ngoài Exercise)
+> - `session-01/test.c` (ngoài Exercise)
+> - `session-01/.gitignore` (ngoài Exercise)
+>
+> ✅ **CHỈ được tạo trong:**
+> - `session-01/Exercise_1/main.c`
+> - `session-01/Exercise_1/Makefile`
+> - `session-01/Exercise_2/...`
+>
+> Nếu cần file helper (debug, config, test), **đặt nó TRONG Exercise folder**, không ở root session.
+
 > ⚠️ Mỗi Exercise trong đề bài có ghi rõ loại:
 > - `[build]` — **bắt buộc có Makefile**, hệ thống sẽ build và chạy thử. Không có Makefile → điểm 0 toàn bài.
 > - `[review-only]` — không cần Makefile, hệ thống chỉ review code tĩnh (Yocto recipe, Device Tree, v.v.).
@@ -409,8 +424,8 @@ Hệ thống sẽ **tự động close PR và báo lý do** nếu vi phạm mộ
 | Lý do bị reject | Cách khắc phục |
 |---|---|
 | Nộp file từ nhiều session cùng lúc (vd: session-01 + session-03) | **Nguyên nhân:** Quên `git checkout master` trước khi tạo branch session-02. Branch mới được tạo từ session-01 → kéo theo code cũ. **Cách khắc phục:** LUÔN quay về master trước tạo branch buổi mới: `git checkout master && git pull` rồi mới `git checkout -b embedded-linux/K26.1/ten-ban/session-02`. Nếu tạo sai, đóng PR cũ và tạo PR mới từ branch đúng. |
-| Sửa file ngoài thư mục session (vd: `README.md`, `class.json` ở root) | Chỉ được tạo/sửa file bên trong thư mục session của bạn |
-| Sửa file không phải Exercise folders (vd: sửa `homework.md`) | Chỉ được tạo/sửa file **trong** `Exercise_N/` folders |
+| Sửa hoặc tạo file ngoài Exercise folders | **Chỉ được tạo/sửa file TRONG `Exercise_N/` folders.** Không được tạo/sửa: `homework.md`, `debug.c`, `config.h`, `.gitignore`, v.v. ở ngoài Exercise folders (dù là bên trong session folder). Mỗi file phụ trợ phải nằm bên trong Exercise folder tương ứng. |
+| Sửa file ở root repo (vd: `README.md`, `class.json`) | Chỉ được tạo/sửa file bên trong thư mục session của bạn (`{môn}/{khoá}/{tên-bạn}/{session-XX}/`). Không được sửa files ở root repo |
 
 ### **3️⃣ Kiểm tra Bài Tập**
 

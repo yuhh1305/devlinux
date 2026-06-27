@@ -9,7 +9,7 @@
 ---
 
 # Assignment — Session 02: Memory Layout & Stack Analysis
-**Deadline: 2026-06-28 23:59:00**
+**Deadline: 2026-07-05 23:59:00**
 
 ---
 

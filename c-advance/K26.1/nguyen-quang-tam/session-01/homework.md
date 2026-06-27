@@ -9,7 +9,7 @@
 ---
 
 # Assignment — Session 01: Coding Standards
-**Deadline: YYYY-MM-DD 23:59:00**
+**Deadline: 2026-07-05 23:59:00**
 
 ---
 
